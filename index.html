@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Булочки ранней пташки — Кафе · Кондитерская · Пекарня</title>
+    <link rel="preconnect" href="https://cdn.fontsource.org" />
+    <link rel="stylesheet" href="https://cdn.fontsource.org/fonts/cormorant-garamond/css/400,500,600,700.css" />
+    <link rel="stylesheet" href="https://cdn.fontsource.org/fonts/montserrat/css/400,500,600,700.css" />
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FFF8F0;
+            --warm-white: #FFFDF9;
+            --gold: #C8956C;
+            --gold-light: #E8C4A0;
+            --gold-dark: #A07040;
+            --brown: #5C3D2E;
+            --brown-dark: #3E2723;
+            --brown-light: #8D6E63;
+            --text-dark: #2D1B0E;
+            --text-medium: #5D4037;
+            --text-light: #8D6E63;
+            --accent: #D4A574;
+            --green: #6B8F71;
+            --shadow-sm: 0 2px 8px rgba(92, 61, 46, 0.08);
+            --shadow-md: 0 4px 20px rgba(92, 61, 46, 0.12);
+            --shadow-lg: 0 8px 40px rgba(92, 61, 46, 0.16);
+            --shadow-xl: 0 16px 60px rgba(92, 61, 46, 0.2);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(0px);
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+            padding: 0.6rem 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--brown-dark);
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-dark);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: white !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-dark) !important;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+
+        .nav-burger span {
+            width: 24px;
+            height: 2px;
+            background: var(--brown-dark);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .nav-burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(62, 39, 35, 0.8) 0%,
+                rgba(62, 39, 35, 0.4) 50%,
+                rgba(62, 39, 35, 0.6) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(200, 149, 108, 0.2);
+            border: 1px solid rgba(200, 149, 108, 0.4);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            color: white;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-title span {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: white;
+            box-shadow: 0 4px 15px rgba(200, 149, 108, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(200, 149, 108, 0.5);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        /* Floating Elements */
+        .hero-float {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            display: none;
+        }
+
+        @media (min-width: 1200px) {
+            .hero-float {
+                display: block;
+            }
+        }
+
+        .hero-float-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            width: 280px;
+            animation: floatUp 3s ease-in-out infinite;
+        }
+
+        .hero-float-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+        }
+
+        .hero-float-card h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-float-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+        }
+
+        .hero-float-card .price {
+            color: var(--gold-light);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--gold-light);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--brown-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Rating Section */
+        .rating-section {
+            background: var(--warm-white);
+        }
+
+        .rating-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .rating-info {
+            padding-right: 2rem;
+        }
+
+        .rating-score {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .rating-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .rating-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 3px;
+        }
+
+        .star {
+            color: #F5A623;
+            font-size: 1.3rem;
+        }
+
+        .rating-count {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: var(--brown-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-text {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .rating-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .rating-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        .rating-feature-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .rating-image {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .rating-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .rating-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(62, 39, 35, 0.8));
+            color: white;
+        }
+
+        .rating-image-overlay h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .rating-image-overlay p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            background: var(--cream);
+            position: relative;
+        }
+
+        .menu-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .menu-card-img {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .menu-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-card:hover .menu-card-img img {
+            transform: scale(1.08);
+        }
+
+        .menu-card-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gold);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-card-body {
+            padding: 1.5rem;
+        }
+
+        .menu-card-title {
+            font-size: 1.4rem;
+            color: var(--brown-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .menu-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .menu-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-card-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .menu-card-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu-card-weight {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            background: var(--cream);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+        }
+
+        .menu-cta {
+            text-align: center;
+        }
+
+        .btn-menu {
+            background: transparent;
+            color: var(--gold-dark);
+            border: 2px solid var(--gold);
+            padding: 1rem 2.5rem;
+        }
+
+        .btn-menu:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: var(--brown-dark);
+            padding: 6rem 2rem;
+        }
+
+        .gallery-section .section-label {
+            color: var(--gold-light);
+        }
+
+        .gallery-section .section-label::before,
+        .gallery-section .section-label::after {
+            background: var(--gold);
+        }
+
+        .gallery-section .section-title {
+            color: white;
+        }
+
+        .gallery-section .section-desc {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(62, 39, 35, 0);
+            transition: background 0.3s;
+        }
+
+        .gallery-item:hover::after {
+            background: rgba(62, 39, 35, 0.2);
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(4) {
+            grid-column: span 2;
+        }
+
+        .gallery-add {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .gallery-add:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .gallery-add-icon {
+            font-size: 2rem;
+        }
+
+        .gallery-add span {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: var(--warm-white);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+            border: 1px solid rgba(200, 149, 108, 0.1);
+        }
+
+        .info-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .info-card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card-title {
+            font-size: 1.3rem;
+            color: var(--brown-dark);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .info-card-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .info-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .info-card-link:hover {
+            color: var(--gold-dark);
+        }
+
+        /* Schedule */
+        .schedule-table {
+            width: 100%;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(200, 149, 108, 0.1);
+            font-size: 0.85rem;
+        }
+
+        .schedule-row:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-day {
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        .schedule-time {
+            color: var(--text-light);
+        }
+
+        .schedule-time.open {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews-section::before {
+            content: '"';
+            position: absolute;
+            top: -2rem;
+            left: 5%;
+            font-size: 20rem;
+            font-family: 'Cormorant Garamond', serif;
+            color: rgba(200, 149, 108, 0.06);
+            line-height: 1;
+        }
+
+        .reviews-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .reviews-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .review-card {
+            min-width: 380px;
+            max-width: 380px;
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            scroll-snap-align: start;
+            transition: all 0.3s;
+            border: 1px solid rgba(200, 149, 108, 0.08);
+        }
+
+        .review-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .review-name {
+            font-weight: 600;
+            color: var(--brown-dark);
+            font-size: 0.95rem;
+        }
+
+        .review-date {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-stars .star {
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--brown-dark) 0%, var(--brown) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(200, 149, 108, 0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta-primary {
+            background: var(--gold);
+            color: white;
+            box-shadow: 0 4px 20px rgba(200, 149, 108, 0.4);
+        }
+
+        .btn-cta-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(200, 149, 108, 0.5);
+        }
+
+        .btn-cta-outline {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-cta-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--brown-dark);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold-light);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatUp {
+            0%, 100% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(calc(-50% - 15px));
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 248, 240, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--brown-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .rating-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .rating-info {
+                padding-right: 0;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .gallery-item:nth-child(4) {
+                grid-column: span 1;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-burger {
+                display: flex;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .hero-stat-value {
+                font-size: 2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .review-card {
+                min-width: 300px;
+                max-width: 300px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .rating-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .hero-content {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator span {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Status badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-dot.closed {
+            background: #E57373;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">🥐</div>
+                <span class="nav-logo-text">Булочки ранней пташки</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#menu">Меню</a></li>
+                <li><a href="#gallery">Фото</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+                <li><a href="tel:+79632978871" class="nav-cta">Позвонить</a></li>
+            </ul>
+            <button class="nav-burger" id="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMobile()">О нас</a>
+        <a href="#menu" onclick="closeMobile()">Меню</a>
+        <a href="#gallery" onclick="closeMobile()">Фото</a>
+        <a href="#reviews" onclick="closeMobile()">Отзывы</a>
+        <a href="#contacts" onclick="closeMobile()">Контакты</a>
+        <a href="tel:+79632978871" class="btn btn-primary" onclick="closeMobile()">Позвонить</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://image.qwenlm.ai/public_source/f9e9f584-c3f1-47d7-9e85-66a8d974ad68/1fa7b353a-1206-4170-9395-3e88131d599a.png" alt="Интерьер пекарни">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🏆 Хорошее место 2026</div>
+            <h1 class="hero-title">
+                Кафе, пекарня и <span>кондитерская</span>
+            </h1>
+            <p class="hero-subtitle">
+                «Булочки ранней пташки» — уютное место, где можно позавтракать, пообедать или поужинать. Свежая выпечка каждый день с любовью и заботой.
+            </p>
+            <div class="hero-actions">
+                <a href="#menu" class="btn btn-primary">Посмотреть меню</a>
+                <a href="tel:+79632978871" class="btn btn-outline">📞 +7 (963) 297-88-71</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">5.0</div>
+                    <div class="hero-stat-label">Рейтинг</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">1718</div>
+                    <div class="hero-stat-label">Отзывов</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">703</div>
+                    <div class="hero-stat-label">Фото</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-float">
+            <div class="hero-float-card">
+                <img src="https://image.qwenlm.ai/public_source/f9e9f584-c3f1-47d7-9e85-66a8d974ad68/1377e055c-f3d2-4e5c-b906-fa3f53711ecc.png" alt="Круассан">
+                <h4>Круассан</h4>
+                <p>Настоящие французские круассаны</p>
+                <div class="price">330 ₽</div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Листайте</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Rating Section -->
+    <section class="section rating-section" id="about">
+        <div class="section-container">
+            <div class="rating-grid">
+                <div class="rating-info animate-on-scroll">
+                    <div class="rating-badge">🏆 Хорошее место 2026</div>
+                    <div class="rating-score">
+                        <div class="rating-number">5.0</div>
+                        <div class="rating-details">
+                            <div class="rating-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <div class="rating-count">1 718 отзывов</div>
+                        </div>
+                    </div>
+                    <p class="rating-text">
+                        «Булочки ранней пташки» — это кафе, пекарня и кондитерская, где можно позавтракать, пообедать или поужинать. Мы печём с любовью каждый день, используя только лучшие ингредиенты.
+                    </p>
+                    <div class="rating-features">
+                        <div class="rating-feature">
+                            <div class="rating-feature-icon">☕</div>
+                            <span>Кафе</span>
+                        </div>
+                        <div class="rating-feature">
+                            <div class="rating-feature-icon">🍞</div>
+                            <span>Пекарня</span>
+                        </div>
+                        <div class="rating-feature">
+                            <div class="rating-feature-icon"></div>
+                            <span>Кондитерская</span>
+                        </div>
+                        <div class="rating-feature">
+                            <div class="rating-feature-icon">⏰</div>
+                            <span>До 21:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rating-image animate-on-scroll">
+                    <img src="https://image.qwenlm.ai/public_source/f9e9f584-c3f1-47d7-9e85-66a8d974ad68/12491e307-b88b-4d77-8e86-798d8ed82c5e.png" alt="Фасад пекарни">
+                    <div class="rating-image-overlay">
+                        <h4>Красная ул., 63А</h4>
+                        <p>Калининград</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section menu-section" id="menu">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-label">
+                    Наши блюда
+                </div>
+                <h2 class="section-title">Меню</h2>
+                <p class="section-desc">Свежая выпечка каждый день из лучших ингредиентов</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-card animate-on-scroll">
+                    <div class="menu-card-img">
+                        <img src="https://image.qwenlm.ai/public_source/f9e9f584-c3f1-47d7-9e85-66a8d974ad68/1377e055c-f3d2-4e5c-b906-fa3f53711ecc.png" alt="Круассан">
+                        <div class="menu-card-badge">Хит</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <h3 class="menu-card-title">Круассан</h3>
+                        <p class="menu-card-desc">Настоящие французские круассаны. В составе премиальная высококачественная мука, новозеландское сливочное масло 84%</p>
+                        <div class="menu-card-footer">
+                            <div class="menu-card-price">330 ₽ <span>/ 1 шт.</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card animate-on-scroll">
+                    <div class="menu-card-img">
+                        <img src="https://image.qwenlm.ai/public_source/f9e9f584-c3f1-47d7-9e85-66a8d974ad68/1edf2a899-c6fb-4a16-9a95-08ce6d0e8f10.png" alt="Киевский торт">
+                        <div class="menu-card-badge">Легенда</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <h3 class="menu-card-title">Киевский торт</h3>
+                        <p class="menu-card-desc">Легендарный Киевский торт как из детства. Воздушные коржи безе с кешью, два вида нежнейшего сливочного крема: ванильный и шоколадный</p>
+                        <div class="menu-card-footer">
+                            <div class="menu-card-price">335 ₽ <span>/ 200 г</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-cta animate-on-scroll">
+                <a href="#" class="btn btn-menu">Посмотреть всё меню →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="section-header animate-on-scroll" style="max-width:1200px;margin:0 auto 3rem;">
+            <div class="section-label">
+                Галерея
+            </div>
+            <h2 class="section-title">Фото</h2>
+            <p class="section-desc">Загляните к нам в гости</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item animate-on-scroll" onclick="openLightbox(this)">
+                <img src="https://image.qwenlm.ai/public_source/f9e9f584-c3f1-47d7-9e85-66a8d974ad68/1fa7b353a-1206-4170-9395-3e88131d599a.png" alt="Интерьер пекарни">
+            </div>
+            <div class="gallery-item animate-on-scroll" onclick="openLightbox(this)">
+                <img src="https://image.qwenlm.ai/public_source/f9e9f584-c3f1-47d7-9e85-66a8d974ad68/11888d472-0444-4d09-8c40-2b611bbab25a.png" alt="Выпечка">
+            </div>
+            <div class="gallery-item animate-on-scroll" onclick="openLightbox(this)">
+                <img src="https://image.qwenlm.ai/public_source/f9e9f584-c3f1-47d7-9e85-66a8d974ad68/1a12136c2-2e0a-4ff5-b3b9-43b7bb21a830.png" alt="Кофе и круассаны">
+            </div>
+            <div class="gallery-item animate-on-scroll" onclick="openLightbox(this)">
+                <img src="https://image.qwenlm.ai/public_source/f9e9f584-c3f1-47d7-9e85-66a8d974ad68/12491e307-b88b-4d77-8e86-798d8ed82c5e.png" alt="Фасад">
+            </div>
+            <div class="gallery-add animate-on-scroll">
+                <div class="gallery-add-icon"></div>
+                <span>Добавить фото</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="section info-section" id="contacts">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-label">
+                    Информация
+                </div>
+                <h2 class="section-title">Контакты и адрес</h2>
+                <p class="section-desc">Ждём вас в гости каждый день</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card animate-on-scroll">
+                    <div class="info-card-icon"></div>
+                    <h3 class="info-card-title">Адрес</h3>
+                    <p class="info-card-text">Красная ул., 63А, Калининград</p>
+                    <a href="https://maps.google.com/?q=Красная+ул+63А+Калининград" target="_blank" class="info-card-link">
+                        Показать на карте →
+                    </a>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <div class="info-card-icon">📞</div>
+                    <h3 class="info-card-title">Телефон</h3>
+                    <p class="info-card-text">Узнать о свободных столиках и сделать заказ</p>
+                    <a href="tel:+79632978871" class="info-card-link">
+                        +7 (963) 297-88-71 →
+                    </a>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <div class="info-card-icon">🕐</div>
+                    <h3 class="info-card-title">Время работы</h3>
+                    <p class="info-card-text">
+                        <span class="status-badge">
+                            <span class="status-dot" id="statusDot"></span>
+                            <span id="statusText">Открыто</span>
+                        </span>
+                    </p>
+                    <div class="schedule-table">
+                        <div class="schedule-row">
+                            <span class="schedule-day">Понедельник</span>
+                            <span class="schedule-time">08:00 – 21:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="schedule-day">Вторник</span>
+                            <span class="schedule-time">08:00 – 21:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="schedule-day">Среда</span>
+                            <span class="schedule-time">08:00 – 21:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="schedule-day">Четверг</span>
+                            <span class="schedule-time">08:00 – 21:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="schedule-day">Пятница</span>
+                            <span class="schedule-time">08:00 – 21:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="schedule-day">Суббота</span>
+                            <span class="schedule-time">08:00 – 21:00</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="schedule-day">Воскресенье</span>
+                            <span class="schedule-time">08:00 – 21:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="section reviews-section" id="reviews">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-label">
+                    Отзывы
+                </div>
+                <h2 class="section-title">Что говорят наши гости</h2>
+                <p class="section-desc">Более 1700 отзывов с рейтингом 5.0</p>
+            </div>
+            <div class="reviews-scroll" id="reviewsScroll">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">А</div>
+                        <div>
+                            <div class="review-name">Анна М.</div>
+                            <div class="review-date">2 недели назад</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <p class="review-text">Потрясающие круассаны! Настоящие французские, с хрустящей корочкой и нежной серединкой. Кофе тоже отличный. Очень уютная атмосфера, обязательно вернусь!</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">Д</div>
+                        <div>
+                            <div class="review-name">Дмитрий К.</div>
+                            <div class="review-date">1 месяц назад</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <p class="review-text">Киевский торт — просто мечта! Как в детстве у бабушки. Воздушные коржи, нежный крем и кешью сверху. Лучший торт в Калининграде, без преувеличения.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">Е</div>
+                        <div>
+                            <div class="review-name">Елена С.</div>
+                            <div class="review-date">3 недели назад</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <p class="review-text">Заходим сюда каждое утро за завтраком. Свежая выпечка, приветливый персонал и невероятная атмосфера. Дети обожают булочки с корицей!</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">М</div>
+                        <div>
+                            <div class="review-name">Максим В.</div>
+                            <div class="review-date">1 неделю назад</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <p class="review-text">Лучшая пекарня в городе! Всегда свежее, всегда вкусно. Особенно рекомендую миндальный круассан — он просто тает во рту. Рекомендую всем!</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">О</div>
+                        <div>
+                            <div class="review-name">Ольга Т.</div>
+                            <div class="review-date">2 месяца назад</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <p class="review-text">Идеальное место для утреннего кофе и свежей выпечки. Интерьер очень стильный и уютный. Цены адекватные, качество на высоте. 10 из 10!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content animate-on-scroll">
+            <h2 class="cta-title">Ждём вас в гости!</h2>
+            <p class="cta-text">Приходите за свежей выпечкой, ароматным кофе и тёплой атмосферой. Мы печём для вас каждый день с любовью.</p>
+            <div class="cta-actions">
+                <a href="tel:+79632978871" class="btn btn-cta-primary">📞 Позвонить нам</a>
+                <a href="https://maps.google.com/?q=Красная+ул+63А+Калининград" target="_blank" class="btn btn-cta-outline">📍 Построить маршрут</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>🥐 Булочки ранней пташки</h3>
+                <p>Кафе, пекарня и кондитерская в самом сердце Калининграда. Свежая выпечка каждый день с 08:00 до 21:00.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Telegram">✈️</a>
+                    <a href="#" aria-label="VK">💬</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#gallery">Фото</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Часы работы</h4>
+                <ul>
+                    <li><a href="#">Пн–Вс: 08:00 – 21:00</a></li>
+                    <li><a href="tel:+79632978871">+7 (963) 297-88-71</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Адрес</h4>
+                <ul>
+                    <li><a href="https://maps.google.com/?q=Красная+ул+63А+Калининград" target="_blank">Красная ул., 63А</a></li>
+                    <li><a href="#">Калининград</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Булочки ранней пташки. Все права защищены.</span>
+            <span>Сделано с  в Калининграде</span>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()"></button>
+        <img src="" alt="Фото" id="lightboxImg">
+    </div>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        function closeMobile() {
+            burger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Lightbox
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeMobile();
+            }
+        });
+
+        // Check if open
+        function checkOpenStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const currentTime = hours * 60 + minutes;
+            const openTime = 8 * 60;
+            const closeTime = 21 * 60;
+
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+
+            if (currentTime >= openTime && currentTime < closeTime) {
+                statusDot.classList.remove('closed');
+                statusText.textContent = 'Открыто до 21:00';
+            } else {
+                statusDot.classList.add('closed');
+                statusText.textContent = 'Закрыто, откроется в 08:00';
+            }
+        }
+
+        checkOpenStatus();
+        setInterval(checkOpenStatus, 60000);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const navHeight = nav.offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Horizontal scroll for reviews with mouse drag
+        const reviewsScroll = document.getElementById('reviewsScroll');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        reviewsScroll.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - reviewsScroll.offsetLeft;
+            scrollLeft = reviewsScroll.scrollLeft;
+            reviewsScroll.style.cursor = 'grabbing';
+        });
+
+        reviewsScroll.addEventListener('mouseleave', () => {
+            isDown = false;
+            reviewsScroll.style.cursor = 'grab';
+        });
+
+        reviewsScroll.addEventListener('mouseup', () => {
+            isDown = false;
+            reviewsScroll.style.cursor = 'grab';
+        });
+
+        reviewsScroll.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - reviewsScroll.offsetLeft;
+            const walk = (x - startX) * 2;
+            reviewsScroll.scrollLeft = scrollLeft - walk;
+        });
+
+        reviewsScroll.style.cursor = 'grab';
+    </script>
+</body>
+</html>
+
